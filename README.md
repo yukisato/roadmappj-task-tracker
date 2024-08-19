@@ -17,13 +17,13 @@ This is a CLI tool.
     - [ ] finds the maximum id from current list and makes an id that is one more than the maximum id
     - [ ] sets createdAt and updatedAt to the current time
     - [ ] appends data to the list and returns the new list
-- [ ] `delete()` deletes a task data
-  - [ ] removes a task from the given list and returns the updated list
+- [x] `delete()` deletes a task data
+  - [x] removes a task from the given list and returns the updated list
     - [x] removes the task with the given id from the list
       - [x] returns [] if `list` is empty
       - [x] returns [] if `list` consisits of just one task with id 1, `id` is 1
-    - [ ] returns the same list if the task with the given id is not found
-    - [ ] returns the same list if `list` contains only one task with id 1, and `id` is 2
+    - [x] returns the same list if the task with the given id is not found
+      - [x] returns the same list if `list` contains only one task with id 1, and `id` is 2
 - [ ] `update()` updates a task data
   - [ ] updates a task from the given list
     - [ ] finds a task specified by the given id
