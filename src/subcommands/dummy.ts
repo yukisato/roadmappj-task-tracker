@@ -1,1 +1,1 @@
-export const dummy = (): string => "ok";
+export const dummy = (): string => 'ok';
