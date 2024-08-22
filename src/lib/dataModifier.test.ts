@@ -17,6 +17,17 @@ describe('writeTasks() writes a data to the JSON data file', () => {
     await fileHandle.close();
   });
 
+  it('should create a data file if the data file does not exist', async () => {
+    try {
+      await fs.unlink(dataFilePath);
+    } catch (error) {
+      // Do nothing.
+    }
+    assert.ok(!existsSync(dataFilePath));
+    await writeTasks([]);
+    assert.ok(existsSync(dataFilePath));
+  });
+
   it('should write a task list to the data file', async () => {
     const data: Task[] = [
       {
