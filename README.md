@@ -41,12 +41,10 @@ This is a CLI tool.
   - [x] should not update other tasks
 
 - [ ] readTasks() reads the JSON data file
-  - [ ] makes a data file if it does not exist when modify it
-  - [ ] reads data from the file
-  - [ ] writes data to the file
-  - [ ] can parse JSON as lists
-  - [ ] can convert lists to JSON
+  - [ ] should write an empty data to the data file if the data file does not exist
+  - [x] should read a task list from the data file
 - [ ] writeTasks() writes a data to the JSON data file
+  - [ ] should create a data file if the data file does not exist
   - [ ] should write a task list to the data file
 
 ## Testability is low, importance is low
