@@ -1,7 +1,7 @@
 import { Task } from '@/types/task';
 import { describe, it } from 'node:test';
 import { update } from './update';
-import assert from 'node:assert';
+import assert from 'node:assert/strict';
 
 describe('update() updates a task with the given id in the list', () => {
   const initialList: Task[] = [

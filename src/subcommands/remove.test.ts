@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import { remove } from './remove';
-import assert from 'node:assert';
+import assert from 'node:assert/strict';
 import { Task } from '@/types/task';
 
 describe('remove() deletes a task from a list', () => {
