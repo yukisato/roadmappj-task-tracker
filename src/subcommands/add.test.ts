@@ -1,7 +1,25 @@
 import { Task } from '@/types/task';
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { add } from './add';
+import { add, getNextId } from './add';
+
+describe('getNextId() returns an incremented next id', () => {
+  it('should return 1 for an empty list', () => {
+    assert.equal(getNextId([]), 1);
+  });
+
+  it('should return 2 if `list` has one task with id 1', () => {
+    const list: Task[] = [
+      {
+        id: 1,
+        description: 'task 1',
+        status: 'todo',
+        createdAt: '2022-01-01T00:00:00.000Z',
+      },
+    ];
+    assert.equal(getNextId(list), 2);
+  });
+});
 
 describe('add() adds a new task to the list', () => {
   it('should create and append the data to the list', () => {

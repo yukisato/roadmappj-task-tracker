@@ -10,6 +10,9 @@ This is a CLI tool.
   - [x] runs a command if specified subcommand exists
     - [x] runs `dummy()` function, when `dummy` subcommand is passed
 
+- [x] `getNextId()` returns an incremented next id
+  - [x] should return 1 if `list` is empty
+  - [x] should return 2 if `list` has one task with id 1
 - [x] `add()` adds a new task to the list
   - [x] add "task 1" to the empty list and got the new list
     - [x] it should have a length of 1
