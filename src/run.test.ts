@@ -1,8 +1,8 @@
 import { describe, it } from 'node:test';
-import { run } from './index';
-import assert from 'node:assert';
+import { run } from './run';
+import assert from 'node:assert/strict';
 
-describe('index', () => {
+describe('run() invokes specified subcommand', () => {
   describe('accepts subcommands as a second argument', () => {
     it('throws error if subcommand is not passed', () => {
       let isErrorThrown = false;

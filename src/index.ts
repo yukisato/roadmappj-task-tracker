@@ -1,7 +1,6 @@
-import { dummy } from './subcommands/dummy';
+import { run } from './run';
 
-export const run = (command?: string) => {
-  if (!command) throw new Error('subcommand is not passed');
-  if (command === 'none') throw new Error('invalid subcommand');
-  if (command === 'dummy') return dummy();
-};
+const [, , subcommand, ...args] = process.argv;
+if (!subcommand) throw Error('subcommand is not passed');
+
+run(subcommand, args);
