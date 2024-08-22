@@ -51,12 +51,10 @@ This is a CLI tool.
 ## Testability is low, importance is low
 
 - [ ] accept cli arguments and invoke relateed subcommand function
-- [ ] `list()` displays tasks with the given status
+- [ ] `list()` filters tasks with the given status, then pass it to `display()`
+- [ ] `display()` displays a given task
 
-  - [ ] `list` returns all the tasks
-  - [ ] `list done` returns tasks that are done
-  - [ ] `list todo` returns tasks that are not done
-  - [ ] `list in-progress` returns tasks that are in progress
+  - [ ] should console.log the task
 
 - [ ] createdAt is set properly
 - [ ] updatedAt is set properly
