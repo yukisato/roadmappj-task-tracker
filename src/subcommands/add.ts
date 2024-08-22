@@ -8,8 +8,7 @@ export const add = (list: Task[], description: string): Task[] => {
       id,
       description,
       status: 'todo',
-      createdAt: '2022-01-01T00:00:00.000Z',
-      updatedAt: '2022-01-01T00:00:00.000Z',
+      createdAt: new Date().toISOString(),
     },
   ];
 };
