@@ -32,16 +32,21 @@ This is a CLI tool.
   - [x] should return the same list if no task is found with the given id
 - [x] `update()` updates a task with the given id in the list
   - [x] should update `description`
-  - [x] should update `updatedAt`
+  - [ ] should update `updatedAt` to the current time
   - [x] should not update other tasks
+- [ ] `updateStatus()` updates the status of a task
+  - [ ] refactor markInPprogress() and markDone() to use `updateStatus()`
+  - [ ] should update `status` to "in-progress"
+  - [ ] should update `updatedAt` to the current time
+  - [ ] should not update other tasks
 - [x] `markInPprogress()` marks a task as in progress
   - [x] should update `status` to "in-progress"
-  - [x] should update `updatedAt`
+  - [ ] should update `updatedAt` to the current time
   - [x] should not update other tasks
 - [x] `markDone()` marks a task as done
 
   - [x] should update `status` to "done"
-  - [x] should update `updatedAt`
+  - [ ] should update `updatedAt` to the current time
   - [x] should not update other tasks
 
 - [ ] readTasks() reads the JSON data file
