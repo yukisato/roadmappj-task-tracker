@@ -19,6 +19,7 @@ This is a CLI tool.
     - [x] it should have a task with id 1
     - [x] it should have a task with description of "task 1"
     - [x] it should have a task with status of "todo"
+    - [x] it should have a `createdAt` as the current time
   - [x] add "task 2" to the empty list and got the new list
     - [x] it should have a length of 2
     - [x] it should have a task with id 2
