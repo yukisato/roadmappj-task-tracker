@@ -40,8 +40,8 @@ This is a CLI tool.
   - [x] should update `updatedAt`
   - [x] should not update other tasks
 
-- [ ] readTasks() reads the JSON data file
-  - [ ] should write an empty data to the data file if the data file does not exist
+- [x] readTasks() reads the JSON data file
+  - [x] should write an empty data to the data file if the data file does not exist
   - [x] should read a task list from the data file
 - [x] writeTasks() writes a data to the JSON data file
   - [x] should create a data file if the data file does not exist

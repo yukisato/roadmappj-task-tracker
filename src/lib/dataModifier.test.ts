@@ -52,6 +52,17 @@ describe('writeTasks() writes a data to the JSON data file', () => {
 });
 
 describe('readTasks() reads a JSON file and returns a task list', () => {
+  it('should write an empty data to the data file if the data file does not exist', async () => {
+    try {
+      await fs.unlink(dataFilePath);
+    } catch (error) {
+      // Do nothing.
+    }
+    assert.ok(!existsSync(dataFilePath));
+    const actualData = await readTasks();
+    assert.deepEqual(actualData, []);
+  });
+
   it('should read a task list from the data file', async () => {
     const data: Task[] = [
       {
