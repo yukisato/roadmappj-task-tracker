@@ -5,6 +5,11 @@ import { taskListSchema } from './schema';
 
 export const dataFilePath = path.resolve(__dirname, '../.data.json');
 
+export const emptyData = async (): Promise<void> => {
+  const fileHandle = await fs.open(dataFilePath, 'w');
+  await fileHandle.close();
+};
+
 export const readTasks = async (): Promise<Task[]> =>
   await taskListSchema.parseAsync(
     JSON.parse(await fs.readFile(dataFilePath, 'utf-8'))
