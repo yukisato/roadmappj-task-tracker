@@ -47,6 +47,7 @@ This is a CLI tool.
   - [ ] can parse JSON as lists
   - [ ] can convert lists to JSON
 - [ ] writeTasks() writes a data to the JSON data file
+  - [ ] should write a task list to the data file
 
 ## Testability is low, importance is low
 
