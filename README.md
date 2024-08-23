@@ -64,10 +64,12 @@ This is a CLI tool.
 
 - [x] create ./bin/task-cli to run the command
 - [ ] accept cli arguments and invoke relateed subcommand function
-- [ ] `list()` filters tasks with the given status, then pass it to `display()`
-- [ ] `display()` displays a given task
+- [x] `list()` filters tasks with the given status, then pass it to `display()`
+  - [x] should call console.log 2 times with 2 length task list when status is not specified
+  - [x] should call console.log 1 time with filtered tasks
+- [x] `display()` displays a given task
 
-  - [ ] should console.log the task
+  - [x] should console.log a task
 
 - [ ] createdAt is set properly
 - [ ] updatedAt is set properly
