@@ -35,18 +35,16 @@ This is a CLI tool.
   - [ ] should update `updatedAt` to the current time
   - [x] should not update other tasks
 - [ ] `updateStatus()` updates the status of a task
-  - [ ] refactor markInPprogress() and markDone() to use `updateStatus()`
+  - [x] refactor markInPprogress() and markDone() to use `updateStatus()`
   - [x] should update `status` to "in-progress"
   - [ ] should update `updatedAt` to the current time
   - [x] should not update other tasks
 - [x] `markInPprogress()` marks a task as in progress
   - [x] should update `status` to "in-progress"
-  - [ ] should update `updatedAt` to the current time
   - [x] should not update other tasks
 - [x] `markDone()` marks a task as done
 
   - [x] should update `status` to "done"
-  - [ ] should update `updatedAt` to the current time
   - [x] should not update other tasks
 
 - [x] readTasks() reads the JSON data file

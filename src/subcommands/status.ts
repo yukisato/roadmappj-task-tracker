@@ -16,15 +16,6 @@ export const updateStatus = (
   );
 
 export const markInProgress = (list: Task[], id: number): Task[] =>
-  list.map((task) =>
-    task.id !== id
-      ? task
-      : { ...task, status: 'in-progress', updatedAt: new Date().toISOString() }
-  );
-
+  updateStatus(list, id, 'in-progress');
 export const markDone = (list: Task[], id: number): Task[] =>
-  list.map((task) =>
-    task.id !== id
-      ? task
-      : { ...task, status: 'done', updatedAt: new Date().toISOString() }
-  );
+  updateStatus(list, id, 'done');

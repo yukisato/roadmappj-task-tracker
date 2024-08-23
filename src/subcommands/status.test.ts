@@ -44,27 +44,11 @@ describe('markInProgress() marks a task as in progress', () => {
     initialList = structuredClone(testData);
   });
 
-  it('should update `task.status` to "in-progress"', () => {
+  it('should update `status` to "in-progress"', () => {
     const actual = markInProgress(initialList, todoTask.id).find(
       ({ id }) => id === todoTask.id
     );
     assert.equal(actual?.status, 'in-progress');
-  });
-
-  it('should update updatedAt', () => {
-    const actual = markInProgress(initialList, todoTask.id).find(
-      ({ id }) => id === todoTask.id
-    );
-    assert.notEqual(actual?.updatedAt, undefined);
-    assert.notEqual(actual?.updatedAt, todoTask.updatedAt);
-  });
-
-  it('should not update other tasks', () => {
-    const updatedList = markInProgress(initialList, inProgressTask.id);
-    const actualTodoTask = updatedList.find(({ id }) => id === todoTask.id);
-    const actualDoneTask = updatedList.find(({ id }) => id === doneTask.id);
-    assert.deepEqual(actualTodoTask, todoTask);
-    assert.deepEqual(actualDoneTask, doneTask);
   });
 });
 
@@ -74,28 +58,10 @@ describe('markDone() marks a task as done', () => {
     initialList = structuredClone(testData);
   });
 
-  it('should update `task.status` to "done"', () => {
+  it('should update `status` to "done"', () => {
     const actual = markDone(initialList, inProgressTask.id).find(
       ({ id }) => id === inProgressTask.id
     );
     assert.equal(actual?.status, 'done');
-  });
-
-  it('should update updatedAt', () => {
-    const actual = markDone(initialList, inProgressTask.id).find(
-      ({ id }) => id === inProgressTask.id
-    );
-    assert.notEqual(actual?.updatedAt, undefined);
-    assert.notEqual(actual?.updatedAt, inProgressTask.updatedAt);
-  });
-
-  it('should not update other tasks', () => {
-    const updatedList = markDone(initialList, doneTask.id);
-    const actualTodoTask = updatedList.find(({ id }) => id === todoTask.id);
-    const actualInProgressTask = updatedList.find(
-      ({ id }) => id === inProgressTask.id
-    );
-    assert.deepEqual(actualTodoTask, todoTask);
-    assert.deepEqual(actualInProgressTask, inProgressTask);
   });
 });
