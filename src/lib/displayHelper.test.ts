@@ -1,7 +1,13 @@
 import { describe, it } from 'node:test';
-import { display, list } from './displayHelper';
+import {
+  display,
+  list,
+  listArgsSchema,
+  wrongStatusError,
+} from './displayHelper';
 import assert from 'node:assert/strict';
 import { inProgressTask, todoTask } from './testData';
+import { Status } from '@/types/task';
 
 describe('display()', () => {
   it('should console.log a given task', (t) => {
@@ -41,5 +47,26 @@ describe('list() filters tasks with the given status, then pass it to `display()
     assert.equal(consoleLog.mock.callCount(), 2);
 
     consoleLog.mock.restore();
+  });
+});
+
+describe('listArgsSchema parses arguments properly', () => {
+  it('should parse []', () => {
+    const { success } = listArgsSchema.safeParse([]);
+    assert.ok(success);
+  });
+
+  it('should parse [string] as a proper status', () => {
+    const status: Status = 'todo';
+    const { success } = listArgsSchema.safeParse([status]);
+    assert.ok(success);
+  });
+
+  it('should fails when parsing a non-status [string]', () => {
+    const wrongStatus = 'wrong-status';
+    assert.throws(
+      () => listArgsSchema.safeParse([wrongStatus]),
+      wrongStatusError
+    );
   });
 });

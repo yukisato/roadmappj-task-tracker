@@ -1,4 +1,14 @@
-export type Status = 'todo' | 'in-progress' | 'done';
+import { z } from 'zod';
+import { ValueOf } from './utility';
+
+export const statuses = ['todo', 'in-progress', 'done'] as const;
+export type Status = ValueOf<typeof statuses>;
+export const statusEnumSchema = z.enum(statuses);
+export const isStatus = (status: unknown): status is Status => {
+  const { success } = statusEnumSchema.safeParse(status);
+  return success;
+};
+
 export type Task = {
   id: number;
   description: string;

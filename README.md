@@ -59,9 +59,10 @@ This is a CLI tool.
   - [x] zod schema for the arguments of `updateStatus()`
     - [x] should parse [string]
     - [x] should fails when parsing an empty args
-  - [ ] zod schema for the arguments of `list()`
-    - [ ] should parse [string]
-    - [ ] should fails when parsing an empty args
+  - [x] zod schema for the arguments of `list()`
+    - [x] should parse []
+    - [x] should parse [string]
+    - [x] should fails when parsing a non-status [string]
 
 - [x] readTasks() reads the JSON data file
   - [x] should write an empty data to the data file if the data file does not exist
