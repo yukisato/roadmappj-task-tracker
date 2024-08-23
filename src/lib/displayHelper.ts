@@ -6,7 +6,7 @@ export const display = (t: Task): void => {
 
 export const list = (list: Task[], status?: Status): void =>
   list
-    .filter(({ status: s }) => !s || s === status)
+    .filter(({ status: s }) => !status || s === status)
     .forEach((task) => display(task));
 
 export default { display, list };
