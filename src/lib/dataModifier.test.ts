@@ -7,14 +7,10 @@ import { existsSync } from 'node:fs';
 
 describe('writeTasks() writes a data to the JSON data file', () => {
   beforeEach(async () => {
-    // Empty the data file.
-    const fileHandle = await fs.open(dataFilePath, 'w');
-    await fileHandle.close();
+    await emptyData();
   });
   afterEach(async () => {
-    // Empty the data file.
-    const fileHandle = await fs.open(dataFilePath, 'w');
-    await fileHandle.close();
+    await emptyData();
   });
 
   it('should create a data file if the data file does not exist', async () => {
