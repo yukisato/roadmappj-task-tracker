@@ -5,4 +5,10 @@ const [, , subcommand, ...args] = process.argv;
 if (!subcommand) throw missingCommandError;
 if (!isCommand(subcommand)) throw wrongCommandError;
 
-run(subcommand, args);
+(async () => {
+  try {
+    await run(subcommand, args);
+  } catch (error) {
+    console.error((error as Error).message);
+  }
+})();
