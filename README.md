@@ -50,9 +50,9 @@ This is a CLI tool.
   - [x] zod schema for the arguments of `add()`
     - [x] should parse [string]
     - [x] should fails when parsing an empty args
-  - [ ] zod schema for the arguments of `remove()`
-    - [ ] should parse [string]
-    - [ ] should fails when parsing an empty args
+  - [x] zod schema for the arguments of `remove()`
+    - [x] should parse [string]
+    - [x] should fails when parsing an empty args
   - [ ] zod schema for the arguments of `update()`
     - [ ] should parse [string, string]
     - [ ] should fails when parsing an empty args
