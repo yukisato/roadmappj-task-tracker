@@ -1,7 +1,7 @@
 import { describe, it } from 'node:test';
-import { display } from './displayHelper';
+import { display, list } from './displayHelper';
 import assert from 'node:assert/strict';
-import { todoTask } from './testData';
+import { inProgressTask, todoTask } from './testData';
 
 describe('display()', () => {
   it('should console.log a given task', (t) => {
