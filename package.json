@@ -1,7 +1,10 @@
 {
   "name": "roadmappj-task-tracker",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "bin": {
+    "task-cli": "bin/task-cli"
+  },
   "scripts": {
     "build": "tsc",
     "test": "node --test --require ts-node/register src/**/*.test.ts",

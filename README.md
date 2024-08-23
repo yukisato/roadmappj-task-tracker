@@ -58,6 +58,7 @@ This is a CLI tool.
 
 ## Testability is low, importance is low
 
+- [x] create ./bin/task-cli to run the command
 - [ ] accept cli arguments and invoke relateed subcommand function
 - [ ] `list()` filters tasks with the given status, then pass it to `display()`
 - [ ] `display()` displays a given task
