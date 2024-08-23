@@ -53,9 +53,9 @@ This is a CLI tool.
   - [x] zod schema for the arguments of `remove()`
     - [x] should parse [string]
     - [x] should fails when parsing an empty args
-  - [ ] zod schema for the arguments of `update()`
-    - [ ] should parse [string, string]
-    - [ ] should fails when parsing an empty args
+  - [x] zod schema for the arguments of `update()`
+    - [x] should parse [string, string]
+    - [x] should fails when parsing an empty args
   - [ ] zod schema for the arguments of `markInProgress()`
     - [ ] should parse [string]
     - [ ] should fails when parsing an empty args

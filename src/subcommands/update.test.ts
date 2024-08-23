@@ -1,6 +1,6 @@
 import { Task } from '@/types/task';
 import { beforeEach, describe, it } from 'node:test';
-import { update } from './update';
+import { update, updateArgsSchema } from './update';
 import assert from 'node:assert/strict';
 import { doneTask, inProgressTask, testData, todoTask } from '../lib/testData';
 
@@ -35,5 +35,24 @@ describe('update() updates a task with the given id in the list', () => {
     const actualDoneTask = updatedList.find((task) => task.id === doneTask.id);
     assert.deepEqual(actualInProgressTask, inProgressTask);
     assert.deepEqual(actualDoneTask, doneTask);
+  });
+});
+
+describe('updateArgsSchema parses an argument properly', () => {
+  it('should parse [string] as [number]', () => {
+    const id = 2;
+    const description = 'test description';
+    const idString = id.toString();
+    const { success, data: actual } = updateArgsSchema.safeParse([
+      idString,
+      description,
+    ]);
+    assert.ok(success);
+    assert.deepEqual(actual, [id, description]);
+  });
+
+  it('should fails when parsing an empty args', () => {
+    const { success } = updateArgsSchema.safeParse([]);
+    assert.ok(!success);
   });
 });

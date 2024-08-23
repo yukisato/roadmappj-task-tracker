@@ -1,4 +1,10 @@
 import { Task } from '@/types/task';
+import { z } from 'zod';
+
+export const updateArgsSchema = z.tuple([
+  z.string().transform((id) => parseInt(id)),
+  z.string(),
+]);
 
 export const update = (
   list: Task[],
