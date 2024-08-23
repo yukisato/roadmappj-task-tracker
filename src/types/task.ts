@@ -1,8 +1,7 @@
 import { z } from 'zod';
-import { ValueOf } from './utility';
 
 export const statuses = ['todo', 'in-progress', 'done'] as const;
-export type Status = ValueOf<typeof statuses>;
+export type Status = (typeof statuses)[number];
 export const statusEnumSchema = z.enum(statuses);
 export const isStatus = (status: unknown): status is Status => {
   const { success } = statusEnumSchema.safeParse(status);

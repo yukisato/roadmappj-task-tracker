@@ -1,7 +1,21 @@
 import { dummy } from './subcommands/dummy';
 import { add, remove, update, markInProgress, markDone } from './subcommands';
+import { z } from 'zod';
 
-const commands = {
+const commands = [
+  'add',
+  'update',
+  'delete',
+  'mark-in-progress',
+  'mark-done',
+  'list',
+] as const;
+export type Command = (typeof commands)[number];
+export const commandSchema = z.enum(commands);
+export const isCommand = (command: unknown): command is Command =>
+  commandSchema.safeParse(command).success;
+
+const executors = {
   add: {
     run: add,
   },
@@ -18,9 +32,6 @@ const commands = {
     run: markDone,
   },
 } as const;
-export type Command = keyof typeof commands;
-export const isCommand = (command: string): command is Command =>
-  Object.keys(commands).includes(command);
 
 export const run = (command?: string) => {
   if (!command) throw new Error('subcommand is not passed');
