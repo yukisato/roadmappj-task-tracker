@@ -7,10 +7,10 @@ describe('display()', () => {
   it('should console.log a given task', (t) => {
     const consoleLog = t.mock.method(console, 'log');
 
-    assert.strictEqual(consoleLog.mock.callCount(), 0);
+    assert.equal(consoleLog.mock.callCount(), 0);
     display(todoTask);
-    assert.strictEqual(consoleLog.mock.callCount(), 1);
-    assert.deepStrictEqual(consoleLog.mock.calls[0].arguments, [
+    assert.equal(consoleLog.mock.callCount(), 1);
+    assert.deepEqual(consoleLog.mock.calls[0].arguments, [
       todoTask.id,
       todoTask.description,
       todoTask.status,
