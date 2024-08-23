@@ -1,4 +1,3 @@
-import { dummy } from './subcommands/dummy';
 import {
   add,
   remove,
