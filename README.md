@@ -1,8 +1,33 @@
-This is a CLI tool.
+# Task Tracker CLI
 
-## Testability is high, importance is high
+## Overview
 
-- [x] Accept subcommands as a second argument
+This project is an implementation of a learning project featured on [roadmap.sh](https://roadmap.sh/projects/task-tracker).
+
+- ✅ Developed through TDD
+- 💯 Fully tested with Node.js native testing APIs
+- 🧑‍🎓 Good example for learners
+
+## Installation
+
+```bash
+# Install dependencies
+pnpm install
+
+# Build
+pnpm run build
+
+# Run
+cd ./bin
+task-cli add "task 1"
+task-cli list
+```
+
+## TODO (alongside TDD)
+
+### Testability is high, importance is high
+
+- [x] run() accept subcommands as a second argument
 
   - [x] throws error if subcommand is not passed
   - [x] throws error if specified subcommand does not exist
@@ -32,12 +57,12 @@ This is a CLI tool.
   - [x] should return the same list if no task is found with the given id
 - [x] `update()` updates a task with the given id in the list
   - [x] should update `description`
-  - [ ] should update `updatedAt` to the current time
+  - [x] should update `updatedAt` to the current time
   - [x] should not update other tasks
-- [ ] `updateStatus()` updates the status of a task
+- [x] `updateStatus()` updates the status of a task
   - [x] refactor markInPprogress() and markDone() to use `updateStatus()`
   - [x] should update `status` to "in-progress"
-  - [ ] should update `updatedAt` to the current time
+  - [x] should update `updatedAt` to the current time
   - [x] should not update other tasks
 - [x] `markInPprogress()` marks a task as in progress
   - [x] should update `status` to "in-progress"
@@ -45,7 +70,7 @@ This is a CLI tool.
 
   - [x] should update `status` to "done"
 
-- [ ] define zod shemas for subcommand arguments
+- [x] define zod shemas for subcommand arguments
 
   - [x] zod schema for the arguments of `add()`
     - [x] should parse [string]
@@ -74,7 +99,8 @@ This is a CLI tool.
 - [x] emptyData() empties the data file
   - [x] should create the data file it if not exists
   - [x] should empty the data file
-- [ ] `run()` runs related subcommand function
+- [x] `run()` runs related subcommand function
+  - [x] should run 'list' command
 - [x] `index()` invokes `run()` with arguments
   - [x] should throw error if subcommand is not passed
   - [x] should throw error if a wrong subcommand is passed
@@ -82,16 +108,11 @@ This is a CLI tool.
 ## Testability is low, importance is low
 
 - [x] create ./bin/task-cli to run the command
-- [ ] accept cli arguments and invoke relateed subcommand function
 - [x] `list()` filters tasks with the given status, then pass it to `display()`
   - [x] should call console.log 2 times with 2 length task list when status is not specified
   - [x] should call console.log 1 time with filtered tasks
 - [x] `display()` displays a given task
-
   - [x] should console.log a task
-
-- [ ] createdAt is set properly
-- [ ] updatedAt is set properly
 
 Data type
 
