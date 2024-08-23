@@ -15,7 +15,11 @@
       "prettier --write"
     ]
   },
-  "author": "",
+  "author": {
+    "name": "Yuki Sato",
+    "email": "yuki.sato.dev@gmail.com",
+    "url": "https://github.com/yukisato"
+  },
   "license": "ISC",
   "description": "",
   "devDependencies": {
