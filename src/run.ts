@@ -1,8 +1,20 @@
 import { dummy } from './subcommands/dummy';
-import { add, remove, update, markInProgress, markDone } from './subcommands';
+import {
+  add,
+  remove,
+  update,
+  markInProgress,
+  markDone,
+  addArgsSchema,
+  updateArgsSchema,
+  removeArgsSchema,
+  updateStatusArgsSchema,
+} from './subcommands';
 import { z } from 'zod';
+import { readTasks, writeTasks } from './lib/dataModifier';
+import { list, listArgsSchema, wrongStatusError } from './lib/displayHelper';
 
-const commands = [
+export const commands = [
   'add',
   'update',
   'delete',
@@ -15,26 +27,39 @@ export const commandSchema = z.enum(commands);
 export const isCommand = (command: unknown): command is Command =>
   commandSchema.safeParse(command).success;
 
-const executors = {
-  add: {
-    run: add,
+export type Executor = (args: string[]) => Promise<void>;
+const executors: Record<Command, Executor> = {
+  add: async (args: string[]) => {
+    const { data } = addArgsSchema.safeParse(args);
+    if (data) await writeTasks(add(...[await readTasks(), ...data]));
   },
-  update: {
-    run: update,
+  update: async (args: string[]) => {
+    const { data } = updateArgsSchema.safeParse(args);
+    if (data) await writeTasks(update(...[await readTasks(), ...data]));
   },
-  remove: {
-    run: remove,
+  delete: async (args: string[]) => {
+    const { data } = removeArgsSchema.safeParse(args);
+    if (data) await writeTasks(remove(...[await readTasks(), ...data]));
   },
-  'in-progress': {
-    run: markInProgress,
+  'mark-in-progress': async (args: string[]) => {
+    const { data } = updateStatusArgsSchema.safeParse(args);
+    if (data) await writeTasks(markInProgress(...[await readTasks(), ...data]));
   },
-  done: {
-    run: markDone,
+  'mark-done': async (args: string[]) => {
+    const { data } = updateStatusArgsSchema.safeParse(args);
+    if (data) await writeTasks(markDone(...[await readTasks(), ...data]));
+  },
+  list: async (args: string[]) => {
+    const { success, data } = listArgsSchema.safeParse(args);
+    if (!success) throw wrongStatusError;
+    if (data) {
+      list(...[await readTasks(), ...data]);
+    } else {
+      list(await readTasks());
+    }
   },
 } as const;
 
-export const run = (command?: string) => {
-  if (!command) throw new Error('subcommand is not passed');
-  if (command === 'none') throw new Error('invalid subcommand');
-  if (command === 'dummy') return dummy();
+export const run = async (command: Command, args: string[]) => {
+  await executors[command](args);
 };

@@ -1,32 +1,26 @@
-import { describe, it } from 'node:test';
+import { afterEach, beforeEach, describe, it } from 'node:test';
 import { run } from './run';
 import assert from 'node:assert/strict';
+import { emptyData, writeTasks } from './lib/dataModifier';
+import { inProgressTask, todoTask } from './lib/testData';
 
 describe('run() invokes specified subcommand', () => {
-  describe('accepts subcommands as a second argument', () => {
-    it('throws error if subcommand is not passed', () => {
-      let isErrorThrown = false;
-      try {
-        run();
-      } catch (error) {
-        isErrorThrown = true;
-      }
-      assert.equal(true, isErrorThrown);
-    });
-    describe("throws error if 'none' is given as a subcommand", () => {
-      let isErrorThrown = false;
-      try {
-        run('none');
-      } catch (error) {
-        isErrorThrown = true;
-      }
-      assert.equal(true, isErrorThrown);
-    });
-    describe('runs a command if specified subcommand exists', () => {
-      it("runs 'dummy' command if 'dummy' is passed", () => {
-        const result = run('dummy');
-        assert.equal('ok', result);
-      });
-    });
+  beforeEach(async () => {
+    await emptyData();
+  });
+  afterEach(async () => {
+    await emptyData();
+  });
+
+  it("should run 'list' command", async (t) => {
+    const consoleLog = t.mock.method(console, 'log');
+
+    await writeTasks([todoTask, inProgressTask]);
+
+    assert.equal(consoleLog.mock.callCount(), 0);
+    await run('list', ['todo']);
+    assert.equal(consoleLog.mock.callCount(), 1);
+    await run('list', []);
+    assert.equal(consoleLog.mock.callCount(), 3);
   });
 });
