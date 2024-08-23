@@ -41,11 +41,9 @@ This is a CLI tool.
   - [x] should not update other tasks
 - [x] `markInPprogress()` marks a task as in progress
   - [x] should update `status` to "in-progress"
-  - [x] should not update other tasks
 - [x] `markDone()` marks a task as done
 
   - [x] should update `status` to "done"
-  - [x] should not update other tasks
 
 - [x] readTasks() reads the JSON data file
   - [x] should write an empty data to the data file if the data file does not exist
