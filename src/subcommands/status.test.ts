@@ -7,8 +7,7 @@ import { doneTask, inProgressTask, testData, todoTask } from '../lib/testData';
 describe('updateStatus() updates updates a status of a task', () => {
   let initialList: Task[];
   beforeEach(() => {
-    // Copy the shallow data.
-    initialList = testData.map((task) => ({ ...task }));
+    initialList = structuredClone(testData);
   });
 
   it('should update `status` to "in-progress"', () => {
