@@ -5,7 +5,7 @@ export const wrongStatusError = new TypeError(
   `Given status is invalid. Use (${statuses.join('|')}).`
 );
 export const listArgsSchema = z.union([
-  z.tuple([]),
+  z.tuple([]).transform(() => undefined),
   z.tuple([
     z.string().transform((status) => {
       if (isStatus(status)) return status;
