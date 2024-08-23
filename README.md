@@ -5,7 +5,7 @@
 This project is an implementation of a learning project featured on [roadmap.sh](https://roadmap.sh/projects/task-tracker).
 
 - ✅ Developed through TDD
-- 💯 Fully tested with Node.js native testing APIs
+- 📝 Tested with Node.js native test suite
 - 🧑‍🎓 Good example for learners
 
 ## Installation
