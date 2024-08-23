@@ -1,42 +1,39 @@
 import { Task } from '@/types/task';
-import { describe, it } from 'node:test';
+import { beforeEach, describe, it } from 'node:test';
 import { update } from './update';
 import assert from 'node:assert/strict';
+import { doneTask, inProgressTask, testData, todoTask } from '../lib/testData';
 
 describe('update() updates a task with the given id in the list', () => {
-  const initialList: Task[] = [
-    {
-      id: 1,
-      description: 'current task 1',
-      status: 'todo',
-      createdAt: '2022-01-01T00:00:00.000Z',
-      updatedAt: '2022-01-01T00:00:00.000Z',
-    },
-    {
-      id: 2,
-      description: 'current task 2',
-      status: 'todo',
-      createdAt: '2022-01-01T00:00:00.000Z',
-      updatedAt: '2022-01-01T00:00:00.000Z',
-    },
-  ];
-  const id = 1;
-  const newDescription = 'updated task';
-  const updatedList = update(initialList, id, newDescription);
-  const updatedTask = updatedList.find((task) => task.id === id);
+  let initialList: Task[];
+  beforeEach(() => {
+    initialList = structuredClone(testData);
+  });
 
   it('should update `description`', () => {
-    assert.equal(updatedTask?.description, newDescription);
+    const newDescription = todoTask.description + ' updated';
+    const actualTodoTask = update(
+      initialList,
+      todoTask.id,
+      newDescription
+    ).find((task) => task.id === todoTask.id);
+    assert.equal(actualTodoTask?.description, newDescription);
   });
 
   it('should update `updatedAt`', () => {
-    assert.notEqual(updatedTask?.updatedAt, initialList[0].updatedAt);
+    const actualTodoTask = update(initialList, todoTask.id, 'updated').find(
+      (task) => task.id === todoTask.id
+    );
+    assert.notEqual(actualTodoTask?.updatedAt, todoTask.updatedAt);
   });
 
   it('should not update other tasks', () => {
-    assert.deepEqual(
-      updatedList?.find(({ id }) => id === 2),
-      initialList[1]
+    const updatedList = update(initialList, todoTask.id, 'updated');
+    const actualInProgressTask = updatedList.find(
+      (task) => task.id === inProgressTask.id
     );
+    const actualDoneTask = updatedList.find((task) => task.id === doneTask.id);
+    assert.deepEqual(actualInProgressTask, inProgressTask);
+    assert.deepEqual(actualDoneTask, doneTask);
   });
 });
