@@ -10,12 +10,16 @@ This is a CLI tool.
   - [x] runs a command if specified subcommand exists
     - [x] runs `dummy()` function, when `dummy` subcommand is passed
 
+- [x] `getNextId()` returns an incremented next id
+  - [x] should return 1 if `list` is empty
+  - [x] should return 2 if `list` has one task with id 1
 - [x] `add()` adds a new task to the list
   - [x] add "task 1" to the empty list and got the new list
     - [x] it should have a length of 1
     - [x] it should have a task with id 1
     - [x] it should have a task with description of "task 1"
     - [x] it should have a task with status of "todo"
+    - [x] it should have a `createdAt` as the current time
   - [x] add "task 2" to the empty list and got the new list
     - [x] it should have a length of 2
     - [x] it should have a task with id 2
@@ -28,16 +32,21 @@ This is a CLI tool.
   - [x] should return the same list if no task is found with the given id
 - [x] `update()` updates a task with the given id in the list
   - [x] should update `description`
-  - [x] should update `updatedAt`
+  - [ ] should update `updatedAt` to the current time
   - [x] should not update other tasks
+- [ ] `updateStatus()` updates the status of a task
+  - [ ] refactor markInPprogress() and markDone() to use `updateStatus()`
+  - [ ] should update `status` to "in-progress"
+  - [ ] should update `updatedAt` to the current time
+  - [ ] should not update other tasks
 - [x] `markInPprogress()` marks a task as in progress
   - [x] should update `status` to "in-progress"
-  - [x] should update `updatedAt`
+  - [ ] should update `updatedAt` to the current time
   - [x] should not update other tasks
 - [x] `markDone()` marks a task as done
 
   - [x] should update `status` to "done"
-  - [x] should update `updatedAt`
+  - [ ] should update `updatedAt` to the current time
   - [x] should not update other tasks
 
 - [x] readTasks() reads the JSON data file
