@@ -49,14 +49,16 @@ This is a CLI tool.
   - [ ] should update `updatedAt` to the current time
   - [x] should not update other tasks
 
-- [ ] readTasks() reads the JSON data file
-  - [ ] makes a data file if it does not exist when modify it
-  - [ ] reads data from the file
-  - [ ] writes data to the file
-  - [ ] can parse JSON as lists
-  - [ ] can convert lists to JSON
-- [ ] writeTasks() writes a data to the JSON data file
-  - [ ] should write a task list to the data file
+- [x] readTasks() reads the JSON data file
+  - [x] should write an empty data to the data file if the data file does not exist
+  - [x] should read a task list from the data file
+- [x] writeTasks() writes a data to the JSON data file
+  - [x] should create a data file if the data file does not exist
+  - [x] should write a task list to the data file
+  - [x] should write an empty task list to the data file
+- [x] emptyData() empties the data file
+  - [x] should create the data file it if not exists
+  - [x] should empty the data file
 
 ## Testability is low, importance is low
 
