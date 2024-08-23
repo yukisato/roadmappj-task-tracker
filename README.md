@@ -55,6 +55,10 @@ This is a CLI tool.
 - [x] emptyData() empties the data file
   - [x] should create the data file it if not exists
   - [x] should empty the data file
+- [ ] `run()` runs related subcommand function
+- [x] `index()` invokes `run()` with arguments
+  - [x] should throw error if subcommand is not passed
+  - [x] should throw error if a wrong subcommand is passed
 
 ## Testability is low, importance is low
 
