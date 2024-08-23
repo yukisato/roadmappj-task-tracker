@@ -36,9 +36,9 @@ This is a CLI tool.
   - [x] should not update other tasks
 - [ ] `updateStatus()` updates the status of a task
   - [ ] refactor markInPprogress() and markDone() to use `updateStatus()`
-  - [ ] should update `status` to "in-progress"
+  - [x] should update `status` to "in-progress"
   - [ ] should update `updatedAt` to the current time
-  - [ ] should not update other tasks
+  - [x] should not update other tasks
 - [x] `markInPprogress()` marks a task as in progress
   - [x] should update `status` to "in-progress"
   - [ ] should update `updatedAt` to the current time
