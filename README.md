@@ -45,6 +45,27 @@ This is a CLI tool.
 
   - [x] should update `status` to "done"
 
+- [ ] define zod shemas for subcommand arguments
+
+  - [x] zod schema for the arguments of `add()`
+    - [x] should parse [string]
+    - [x] should fails when parsing an empty args
+  - [ ] zod schema for the arguments of `remove()`
+    - [ ] should parse [string]
+    - [ ] should fails when parsing an empty args
+  - [ ] zod schema for the arguments of `update()`
+    - [ ] should parse [string, string]
+    - [ ] should fails when parsing an empty args
+  - [ ] zod schema for the arguments of `markInProgress()`
+    - [ ] should parse [string]
+    - [ ] should fails when parsing an empty args
+  - [ ] zod schema for the arguments of `markDone()`
+    - [ ] should parse [string]
+    - [ ] should fails when parsing an empty args
+  - [ ] zod schema for the arguments of `list()`
+    - [ ] should parse [string]
+    - [ ] should fails when parsing an empty args
+
 - [x] readTasks() reads the JSON data file
   - [x] should write an empty data to the data file if the data file does not exist
   - [x] should read a task list from the data file

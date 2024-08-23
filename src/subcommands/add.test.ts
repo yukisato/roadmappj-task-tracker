@@ -1,7 +1,7 @@
 import { Task } from '@/types/task';
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { add, getNextId } from './add';
+import { add, addArgsSchema, getNextId } from './add';
 
 describe('getNextId() returns an incremented next id', () => {
   it('should return 1 for an empty list', () => {
@@ -18,6 +18,19 @@ describe('getNextId() returns an incremented next id', () => {
       },
     ];
     assert.equal(getNextId(list), 2);
+  });
+});
+
+describe('addArgsSchema parses an argument properly', () => {
+  it('should parse [string]', () => {
+    const description = 'test description';
+    const { success } = addArgsSchema.safeParse([description]);
+    assert.ok(success);
+  });
+
+  it('should fails when parsing an empty args', () => {
+    const { success } = addArgsSchema.safeParse([]);
+    assert.ok(!success);
   });
 });
 
