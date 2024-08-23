@@ -56,12 +56,9 @@ This is a CLI tool.
   - [x] zod schema for the arguments of `update()`
     - [x] should parse [string, string]
     - [x] should fails when parsing an empty args
-  - [ ] zod schema for the arguments of `markInProgress()`
-    - [ ] should parse [string]
-    - [ ] should fails when parsing an empty args
-  - [ ] zod schema for the arguments of `markDone()`
-    - [ ] should parse [string]
-    - [ ] should fails when parsing an empty args
+  - [x] zod schema for the arguments of `updateStatus()`
+    - [x] should parse [string]
+    - [x] should fails when parsing an empty args
   - [ ] zod schema for the arguments of `list()`
     - [ ] should parse [string]
     - [ ] should fails when parsing an empty args

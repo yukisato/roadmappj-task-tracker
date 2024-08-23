@@ -1,6 +1,11 @@
 import assert from 'node:assert/strict';
 import { beforeEach, describe, it } from 'node:test';
-import { markDone, markInProgress, updateStatus } from './status';
+import {
+  markDone,
+  markInProgress,
+  updateStatus,
+  updateStatusArgsSchema,
+} from './status';
 import { Task } from '@/types/task';
 import { doneTask, inProgressTask, testData, todoTask } from '../lib/testData';
 
@@ -63,5 +68,22 @@ describe('markDone() marks a task as done', () => {
       ({ id }) => id === inProgressTask.id
     );
     assert.equal(actual?.status, 'done');
+  });
+});
+
+describe('updateStatusArgsSchema parses an argument properly', () => {
+  it('should parse [string]', () => {
+    const id = 2;
+    const idString = id.toString();
+    const { success, data: actual } = updateStatusArgsSchema.safeParse([
+      idString,
+    ]);
+    assert.ok(success);
+    assert.deepEqual(actual, [id]);
+  });
+
+  it('should fails when parsing an empty args', () => {
+    const { success } = updateStatusArgsSchema.safeParse([]);
+    assert.ok(!success);
   });
 });
