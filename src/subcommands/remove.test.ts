@@ -25,10 +25,7 @@ describe('removeArgsSchema parses an argument properly', () => {
   it('should parse [string] as [number]', () => {
     const targetId = 2;
     const targetIdString = targetId.toString();
-    const { success, data: actual } = removeArgsSchema.safeParse([
-      targetIdString,
-    ]);
-    assert.ok(success);
+    const { data: actual } = removeArgsSchema.safeParse([targetIdString]);
     assert.deepEqual(actual, [targetId]);
   });
 
