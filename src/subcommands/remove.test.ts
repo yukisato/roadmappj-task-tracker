@@ -21,11 +21,7 @@ describe('remove() deletes a task from a list', () => {
 
 describe('removeArgsSchema parses an argument properly', () => {
   it('should parse [string] as [number]', () => {
-    const targetId = 2;
-    const targetIdString = targetId.toString();
-    assert.deepEqual(removeArgsSchema.safeParse([targetIdString]).data, [
-      targetId,
-    ]);
+    assert.deepEqual(removeArgsSchema.safeParse(['2']).data, [2]);
   });
 
   it('should fail when parsing an empty args', () => {

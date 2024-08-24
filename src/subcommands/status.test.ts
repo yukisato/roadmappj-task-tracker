@@ -31,15 +31,15 @@ describe('updateStatus() updates updates a status of a task', () => {
   });
 
   it('should not update other tasks', () => {
-    const updatedList = updateStatus(
-      testList,
-      inProgressTask.id,
-      'in-progress'
+    const updated = updateStatus(testList, inProgressTask.id, 'in-progress');
+    assert.deepEqual(
+      updated.find(({ id }) => id === todoTask.id),
+      todoTask
     );
-    const actualTodoTask = updatedList.find(({ id }) => id === todoTask.id);
-    const actualDoneTask = updatedList.find(({ id }) => id === doneTask.id);
-    assert.deepEqual(actualTodoTask, todoTask);
-    assert.deepEqual(actualDoneTask, doneTask);
+    assert.deepEqual(
+      updated.find(({ id }) => id === doneTask.id),
+      doneTask
+    );
   });
 });
 
