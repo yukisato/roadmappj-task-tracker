@@ -33,7 +33,6 @@ task-cli list
   - [x] throws error if specified subcommand does not exist
     - [x] throws error if `none` is given as a subcommand
   - [x] runs a command if specified subcommand exists
-    - [x] runs `dummy()` function, when `dummy` subcommand is passed
 
 - [x] `getNextId()` returns an incremented next id
   - [x] should return 1 if `list` is empty
