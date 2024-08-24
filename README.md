@@ -51,7 +51,7 @@ task-cli list in-progress
 
 ### Testability is high, importance is high
 
-- [x] run() accept subcommands as a second argument
+- [x] `run()` accept subcommands as a second argument
 
   - [x] should throw error if subcommand is not passed
   - [x] should throw error if specified subcommand does not exist
@@ -73,7 +73,7 @@ task-cli list in-progress
   - [x] should update `updatedAt` to the current time
   - [x] should not update other tasks
 - [x] `updateStatus()` updates the status of a task
-  - [x] refactor markInPprogress() and markDone() to use `updateStatus()`
+  - [x] refactor `markInPprogress()` and `markDone()` to use `updateStatus()`
   - [x] should update `status` to "in-progress"
   - [x] should update `updatedAt` to the current time
   - [x] should not update other tasks
@@ -102,14 +102,14 @@ task-cli list in-progress
     - [x] should parse [string]
     - [x] should fails when parsing a non-status [string]
 
-- [x] readTasks() reads the JSON data file
+- [x] `readTasks()` reads the JSON data file
   - [x] should write an empty data to the data file if the data file does not exist
   - [x] should read a task list from the data file
-- [x] writeTasks() writes a data to the JSON data file
+- [x] `writeTasks()` writes a data to the JSON data file
   - [x] should create a data file if the data file does not exist
   - [x] should write a task list to the data file
   - [x] should write an empty task list to the data file
-- [x] emptyData() empties the data file
+- [x] `emptyData()` empties the data file
   - [x] should create the data file it if not exists
   - [x] should empty the data file
 - [x] `run()` runs related subcommand function
