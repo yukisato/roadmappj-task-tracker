@@ -24,14 +24,11 @@ describe('getNextId() returns an incremented next id', () => {
 
 describe('addArgsSchema parses an argument properly', () => {
   it('should parse [string]', () => {
-    const description = 'test description';
-    const { success } = addArgsSchema.safeParse([description]);
-    assert.ok(success);
+    assert.ok(addArgsSchema.safeParse(['test description']).success);
   });
 
   it('should fails when parsing an empty args', () => {
-    const { success } = addArgsSchema.safeParse([]);
-    assert.ok(!success);
+    assert.ok(!addArgsSchema.safeParse([]).success);
   });
 });
 
@@ -42,8 +39,7 @@ describe('add() adds a new task to the list', () => {
     const updatedList = add([], expected.description);
 
     assert.equal(updatedList.length, 1);
-    const actual = { ...updatedList[0], createdAt };
-    assert.deepEqual(actual, expected);
+    assert.deepEqual({ ...updatedList[0], createdAt }, expected);
   });
 
   it('should increment the id to 2 for the secondaly added task', () => {
