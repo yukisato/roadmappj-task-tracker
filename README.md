@@ -39,17 +39,8 @@ task-cli list
   - [x] should return 1 if `list` is empty
   - [x] should return 2 if `list` has one task with id 1
 - [x] `add()` adds a new task to the list
-  - [x] add "task 1" to the empty list and got the new list
-    - [x] it should have a length of 1
-    - [x] it should have a task with id 1
-    - [x] it should have a task with description of "task 1"
-    - [x] it should have a task with status of "todo"
-    - [x] it should have a `createdAt` as the current time
-  - [x] add "task 2" to the empty list and got the new list
-    - [x] it should have a length of 2
-    - [x] it should have a task with id 2
-    - [x] it should have a task with description of "task 2"
-    - [x] it should have a task with status of "todo"
+  - [x] should create a task and add it to the list
+  - [x] should increment the id to 2 for the secondaly added task
 - [x] `remove()` removes a task with the given id from the list
   - [x] should return `[]` if `list` is empty
   - [x] should return `[]` if `list` contains just one task with id 1 and the given id is also 1

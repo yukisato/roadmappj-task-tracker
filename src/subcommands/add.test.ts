@@ -2,6 +2,7 @@ import { Task } from '@/types/task';
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { add, addArgsSchema, getNextId } from './add';
+import { todoTask } from '../lib/testData';
 
 describe('getNextId() returns an incremented next id', () => {
   it('should return 1 for an empty list', () => {
@@ -36,19 +37,16 @@ describe('addArgsSchema parses an argument properly', () => {
 
 describe('add() adds a new task to the list', () => {
   it('should create a task and add it to the list', () => {
-    const initialList: Task[] = [];
-    const description = 'task 1';
-    const updatedList = add(initialList, description);
+    const createdAt = new Date().toISOString();
+    const expected = { ...todoTask, id: 1, createdAt };
+    const updatedList = add([], expected.description);
+
     assert.equal(updatedList.length, 1);
-
-    const actualTask = updatedList[0];
-
-    assert.equal(actualTask.id, 1);
-    assert.equal(actualTask.description, description);
-    assert.equal(actualTask.status, 'todo');
+    const actual = { ...updatedList[0], createdAt };
+    assert.deepEqual(actual, expected);
   });
 
-  it('should be able to create tasks multiple times and increments the ids', () => {
+  it('should increment the id to 2 for the secondaly added task', () => {
     const initialList: Task[] = [];
     const description1 = 'task 1';
     const description2 = 'task 2';
@@ -60,8 +58,6 @@ describe('add() adds a new task to the list', () => {
       ({ description }) => description === description2
     );
     assert.equal(actualTask1?.id, 1);
-    assert.equal(actualTask1?.description, description1);
     assert.equal(actualTask2?.id, 2);
-    assert.equal(actualTask2?.description, description2);
   });
 });
