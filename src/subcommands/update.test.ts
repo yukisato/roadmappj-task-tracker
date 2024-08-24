@@ -11,18 +11,18 @@ describe('update() updates a task with the given id in the list', () => {
   });
 
   it('should update `description`', () => {
-    const newDescription = todoTask.description + ' updated';
-    const actualTodoTask = update(testList, todoTask.id, newDescription).find(
+    const desc = todoTask.description + ' updated';
+    const actual = update(testList, todoTask.id, desc).find(
       (task) => task.id === todoTask.id
     );
-    assert.equal(actualTodoTask?.description, newDescription);
+    assert.equal(actual?.description, desc);
   });
 
   it('should update `updatedAt`', () => {
-    const actualTodoTask = update(testList, todoTask.id, 'updated').find(
+    const actual = update(testList, todoTask.id, 'updated').find(
       (task) => task.id === todoTask.id
     );
-    assert.notEqual(actualTodoTask?.updatedAt, todoTask.updatedAt);
+    assert.notEqual(actual?.updatedAt, todoTask.updatedAt);
   });
 
   it('should not update other tasks', () => {

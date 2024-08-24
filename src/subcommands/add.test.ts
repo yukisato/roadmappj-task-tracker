@@ -10,15 +10,15 @@ describe('getNextId() returns an incremented next id', () => {
   });
 
   it('should return 2 if `list` has one task with id 1', () => {
-    const list: Task[] = [
+    const actual = getNextId([
       {
         id: 1,
         description: 'task 1',
         status: 'todo',
         createdAt: '2022-01-01T00:00:00.000Z',
       },
-    ];
-    assert.equal(getNextId(list), 2);
+    ]);
+    assert.equal(actual, 2);
   });
 });
 
@@ -36,22 +36,21 @@ describe('add() adds a new task to the list', () => {
   it('should create a task and add it to the list', () => {
     const createdAt = new Date().toISOString();
     const expected = { ...todoTask, id: 1, createdAt };
-    const updatedList = add([], expected.description);
+    const updated = add([], expected.description);
 
-    assert.equal(updatedList.length, 1);
-    assert.deepEqual({ ...updatedList[0], createdAt }, expected);
+    assert.equal(updated.length, 1);
+    assert.deepEqual({ ...updated[0], createdAt }, expected);
   });
 
   it('should increment the id to 2 for the secondaly added task', () => {
-    const initialList: Task[] = [];
-    const description1 = 'task 1';
-    const description2 = 'task 2';
-    const updatedList = add(add(initialList, description1), description2);
+    const desc1 = 'task 1';
+    const desc2 = 'task 2';
+    const updatedList = add(add([], desc1), desc2);
     const actualTask1 = updatedList.find(
-      ({ description }) => description === description1
+      ({ description }) => description === desc1
     );
     const actualTask2 = updatedList.find(
-      ({ description }) => description === description2
+      ({ description }) => description === desc2
     );
     assert.equal(actualTask1?.id, 1);
     assert.equal(actualTask2?.id, 2);
