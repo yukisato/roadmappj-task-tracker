@@ -7,23 +7,23 @@ import {
   updateStatusArgsSchema,
 } from './status';
 import { Task } from '@/types/task';
-import { doneTask, inProgressTask, testData, todoTask } from '../lib/testData';
+import { doneTask, inProgressTask, todoTask } from '../lib/testData';
 
 describe('updateStatus() updates updates a status of a task', () => {
-  let initialList: Task[];
+  let testList: Task[];
   beforeEach(() => {
-    initialList = structuredClone(testData);
+    testList = structuredClone([todoTask, inProgressTask, doneTask]);
   });
 
   it('should update `status` to "in-progress"', () => {
-    const actual = updateStatus(initialList, todoTask.id, 'in-progress').find(
+    const actual = updateStatus(testList, todoTask.id, 'in-progress').find(
       ({ id }) => id === todoTask.id
     );
     assert.equal(actual?.status, 'in-progress');
   });
 
   it('should update updatedAt', () => {
-    const actual = updateStatus(initialList, todoTask.id, 'in-progress').find(
+    const actual = updateStatus(testList, todoTask.id, 'in-progress').find(
       ({ id }) => id === todoTask.id
     );
     assert.notEqual(actual?.updatedAt, undefined);
@@ -32,7 +32,7 @@ describe('updateStatus() updates updates a status of a task', () => {
 
   it('should not update other tasks', () => {
     const updatedList = updateStatus(
-      initialList,
+      testList,
       inProgressTask.id,
       'in-progress'
     );
@@ -44,13 +44,13 @@ describe('updateStatus() updates updates a status of a task', () => {
 });
 
 describe('markInProgress() marks a task as in progress', () => {
-  let initialList: Task[];
+  let testList: Task[];
   beforeEach(() => {
-    initialList = structuredClone(testData);
+    testList = structuredClone([todoTask, inProgressTask, doneTask]);
   });
 
   it('should update `status` to "in-progress"', () => {
-    const actual = markInProgress(initialList, todoTask.id).find(
+    const actual = markInProgress(testList, todoTask.id).find(
       ({ id }) => id === todoTask.id
     );
     assert.equal(actual?.status, 'in-progress');
@@ -58,13 +58,13 @@ describe('markInProgress() marks a task as in progress', () => {
 });
 
 describe('markDone() marks a task as done', () => {
-  let initialList: Task[];
+  let testList: Task[];
   beforeEach(() => {
-    initialList = structuredClone(testData);
+    testList = structuredClone([todoTask, inProgressTask, doneTask]);
   });
 
   it('should update `status` to "done"', () => {
-    const actual = markDone(initialList, inProgressTask.id).find(
+    const actual = markDone(testList, inProgressTask.id).find(
       ({ id }) => id === inProgressTask.id
     );
     assert.equal(actual?.status, 'done');

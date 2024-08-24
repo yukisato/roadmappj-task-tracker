@@ -20,4 +20,3 @@ export const doneTask: Task = {
   createdAt: '2022-01-01T00:00:03.000Z',
   updatedAt: '2022-01-01T00:00:04.000Z',
 } as const;
-export const testData: Task[] = [todoTask, inProgressTask, doneTask] as const;
