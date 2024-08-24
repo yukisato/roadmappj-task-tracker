@@ -53,10 +53,9 @@ task-cli list in-progress
 
 - [x] run() accept subcommands as a second argument
 
-  - [x] throws error if subcommand is not passed
-  - [x] throws error if specified subcommand does not exist
-    - [x] throws error if `none` is given as a subcommand
-  - [x] runs a command if specified subcommand exists
+  - [x] should throw error if subcommand is not passed
+  - [x] should throw error if specified subcommand does not exist
+  - [x] should run a command if specified subcommand exists
 
 - [x] `getNextId()` returns an incremented next id
   - [x] should return 1 if `list` is empty
