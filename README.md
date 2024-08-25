@@ -87,20 +87,20 @@ task-cli list in-progress
 
   - [x] zod schema for the arguments of `add()`
     - [x] should parse [string]
-    - [x] should fails when parsing an empty args
+    - [x] should fail when parsing an empty args
   - [x] zod schema for the arguments of `remove()`
     - [x] should parse [string]
-    - [x] should fails when parsing an empty args
+    - [x] should fail when parsing an empty args
   - [x] zod schema for the arguments of `update()`
     - [x] should parse [string, string]
-    - [x] should fails when parsing an empty args
+    - [x] should fail when parsing an empty args
   - [x] zod schema for the arguments of `updateStatus()`
     - [x] should parse [string]
-    - [x] should fails when parsing an empty args
+    - [x] should fail when parsing an empty args
   - [x] zod schema for the arguments of `list()`
     - [x] should parse []
     - [x] should parse [string]
-    - [x] should fails when parsing a non-status [string]
+    - [x] should fail when parsing a non-status [string]
 
 - [x] `readTasks()` reads the JSON data file
   - [x] should write an empty data to the data file if the data file does not exist
