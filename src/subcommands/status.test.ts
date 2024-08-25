@@ -72,17 +72,11 @@ describe('markDone() marks a task as done', () => {
 });
 
 describe('updateStatusArgsSchema parses an argument properly', () => {
-  it('should parse [string]', () => {
-    const id = 2;
-    const idString = id.toString();
-    const { success, data: actual } = updateStatusArgsSchema.safeParse([
-      idString,
-    ]);
-    assert.ok(success);
-    assert.deepEqual(actual, [id]);
+  it('should succeed in parsing ["2"]', () => {
+    assert.deepEqual(updateStatusArgsSchema.safeParse(['2']).data, [2]);
   });
 
-  it('should fails when parsing an empty args', () => {
+  it('should fail to parse an empty argument []', () => {
     const { success } = updateStatusArgsSchema.safeParse([]);
     assert.ok(!success);
   });
