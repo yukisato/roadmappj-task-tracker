@@ -5,7 +5,7 @@ import fs from 'node:fs/promises';
 import { Task } from '@/types/task';
 import { existsSync } from 'node:fs';
 
-describe('writeTasks() writes a data to the JSON data file', () => {
+describe('`writeTasks()` writes a data to the JSON data file', () => {
   beforeEach(async () => {
     await emptyData();
   });

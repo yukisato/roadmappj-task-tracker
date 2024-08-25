@@ -1,15 +1,14 @@
-import { Task } from '@/types/task';
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { add, addArgsSchema, getNextId } from './add';
 import { todoTask } from '../lib/testData';
 
 describe('getNextId() returns an incremented next id', () => {
-  it('should return 1 for an empty list', () => {
+  it('should return 1 when the list is empty', () => {
     assert.equal(getNextId([]), 1);
   });
 
-  it('should return 2 if `list` has one task with id 1', () => {
+  it('should return 2 when the largest id in the list is 1', () => {
     const actual = getNextId([
       {
         id: 1,
@@ -23,11 +22,11 @@ describe('getNextId() returns an incremented next id', () => {
 });
 
 describe('addArgsSchema parses an argument properly', () => {
-  it('should parse [string]', () => {
-    assert.ok(addArgsSchema.safeParse(['test description']).success);
+  it('should succeed in parsing ["desc"]', () => {
+    assert.ok(addArgsSchema.safeParse(['desc']).success);
   });
 
-  it('should fails when parsing an empty args', () => {
+  it('should fail when parsing an empty argument []', () => {
     assert.ok(!addArgsSchema.safeParse([]).success);
   });
 });
