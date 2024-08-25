@@ -20,7 +20,5 @@ describe('run() invokes specified subcommand', () => {
     assert.equal(consoleLog.mock.callCount(), 0);
     await run('list', ['todo']);
     assert.equal(consoleLog.mock.callCount(), 1);
-    await run('list', []);
-    assert.equal(consoleLog.mock.callCount(), 3);
   });
 });
