@@ -42,16 +42,13 @@ describe('add() adds a new task to the list', () => {
   });
 
   it('should increment the id to 2 for the secondaly added task', () => {
-    const desc1 = 'task 1';
-    const desc2 = 'task 2';
-    const updatedList = add(add([], desc1), desc2);
-    const actualTask1 = updatedList.find(
-      ({ description }) => description === desc1
+    const desc = 'task 2';
+    const updated = add([{ ...todoTask, id: 1, description: 'task 1' }], desc);
+
+    assert.equal(updated.length, 2);
+    assert.equal(
+      updated.find(({ description }) => description === desc)?.id,
+      2
     );
-    const actualTask2 = updatedList.find(
-      ({ description }) => description === desc2
-    );
-    assert.equal(actualTask1?.id, 1);
-    assert.equal(actualTask2?.id, 2);
   });
 });
