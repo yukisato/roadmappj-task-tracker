@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "node --test --require ts-node/register src/**/*.test.ts",
+    "test": "node --test --require ts-node/register 'src/**/*.test.ts'",
     "prepare": "husky"
   },
   "lint-staged": {
