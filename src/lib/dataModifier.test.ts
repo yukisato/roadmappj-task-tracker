@@ -47,31 +47,35 @@ describe('`writeTasks()` writes a data to the JSON data file', () => {
   });
 });
 
-describe('readTasks() reads a JSON file and returns a task list', () => {
-  it('should write an empty data to the data file if the data file does not exist', async () => {
-    try {
-      await fs.unlink(dataFilePath);
-    } catch (error) {
-      // Do nothing.
-    }
-    assert.ok(!existsSync(dataFilePath));
-    const actualData = await readTasks();
-    assert.deepEqual(actualData, []);
+describe('`readTasks()` reads a JSON file and returns a task list', () => {
+  describe('when the data file does not exist', () => {
+    it('should return an empty array', async () => {
+      try {
+        await fs.unlink(dataFilePath);
+      } catch (error) {
+        // Do nothing.
+      }
+      assert.ok(!existsSync(dataFilePath));
+      const actualData = await readTasks();
+      assert.deepEqual(actualData, []);
+    });
   });
 
-  it('should read a task list from the data file', async () => {
-    const data: Task[] = [
-      {
-        id: 1,
-        description: 'current task 1',
-        status: 'todo',
-        createdAt: '2022-01-01T00:00:00.000Z',
-        updatedAt: '2022-01-01T00:00:00.000Z',
-      },
-    ];
-    await fs.writeFile(dataFilePath, JSON.stringify(data));
-    const actual = await readTasks();
-    assert.deepEqual(actual, data);
+  describe('when the list contains just one task', (t) => {
+    it('should return a list with a single task', async () => {
+      const data: Task[] = [
+        {
+          id: 1,
+          description: 'current task 1',
+          status: 'todo',
+          createdAt: '2022-01-01T00:00:00.000Z',
+          updatedAt: '2022-01-01T00:00:00.000Z',
+        },
+      ];
+      await fs.writeFile(dataFilePath, JSON.stringify(data));
+      const actual = await readTasks();
+      assert.deepEqual(actual, data);
+    });
   });
 });
 
