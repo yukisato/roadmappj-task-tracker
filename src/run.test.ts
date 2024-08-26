@@ -18,7 +18,7 @@ describe('run() invokes specified subcommand', () => {
     await writeTasks([todoTask, inProgressTask]);
 
     assert.equal(consoleLog.mock.callCount(), 0);
-    await run('list', ['todo']);
+    await run(['', '', 'list', 'todo']);
     assert.equal(consoleLog.mock.callCount(), 1);
   });
 });

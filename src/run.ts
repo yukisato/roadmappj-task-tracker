@@ -12,6 +12,7 @@ import {
 import { z } from 'zod';
 import { readTasks, writeTasks } from './lib/dataModifier';
 import { list, listArgsSchema, wrongStatusError } from './lib/displayHelper';
+import { missingCommandError, wrongCommandError } from './lib/error';
 
 export const commands = [
   'add',
@@ -59,6 +60,10 @@ const executors: Record<Command, Executor> = {
   },
 } as const;
 
-export const run = async (command: Command, args: string[]) => {
-  await executors[command](args);
+export const run = async (argv: string[]) => {
+  const [, , subcommand, ...args] = argv;
+  if (!subcommand) throw missingCommandError;
+  if (!isCommand(subcommand)) throw wrongCommandError;
+
+  await executors[subcommand](args);
 };
