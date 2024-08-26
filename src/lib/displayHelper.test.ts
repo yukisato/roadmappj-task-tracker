@@ -13,16 +13,16 @@ describe('list() filters tasks with the given status, then pass it to `display()
   });
 });
 
-describe('listArgsSchema parses arguments properly', () => {
-  it('should parse []', () => {
+describe('listArgsSchema correctly parses arguments', () => {
+  it('should succeed in parsing an empty array []', () => {
     assert.ok(listArgsSchema.safeParse([]).success);
   });
 
-  it('should parse [string] as a proper status', () => {
+  it('should succeed in parsing acorrect status ["todo"]', () => {
     assert.ok(listArgsSchema.safeParse(['todo']).success);
   });
 
-  it('should fails when parsing a non-status [string]', () => {
+  it('should fail to parse an incorrect status ["wrong status"]', () => {
     assert.throws(
       () => listArgsSchema.safeParse(['wrong status']),
       wrongStatusError

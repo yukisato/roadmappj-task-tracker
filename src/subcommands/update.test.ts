@@ -37,14 +37,14 @@ describe('update() updates a task with the given id in the list', () => {
 });
 
 describe('updateArgsSchema parses an argument properly', () => {
-  it('should parse ["1", "desc"] as [1, "desc"]', () => {
+  it('should succeed in parsing ["1", "desc"] as [1, "desc"]', () => {
     assert.deepEqual(updateArgsSchema.safeParse(['1', 'desc']).data, [
       1,
       'desc',
     ]);
   });
 
-  it('should fails when parsing an empty args', () => {
+  it('should fail to parse an empty argument', () => {
     assert.ok(!updateArgsSchema.safeParse([]).success);
   });
 });
