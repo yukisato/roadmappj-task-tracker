@@ -10,7 +10,7 @@ import {
   updateStatusArgsSchema,
 } from './subcommands';
 import { readTasks, writeTasks } from './lib/dataModifier';
-import { list, listArgsSchema, wrongStatusError } from './lib/displayHelper';
+import { list, listArgsSchema, WrongStatusError } from './lib/displayHelper';
 import { MissingCommandError, WrongCommandError } from './lib/error';
 import { Command, isCommand } from './types/command';
 
@@ -38,7 +38,7 @@ const executors: Record<Command, Executor> = {
   },
   list: async (args: string[]) => {
     const { success, data } = listArgsSchema.safeParse(args);
-    if (!success) throw wrongStatusError;
+    if (!success) throw new WrongStatusError();
     if (data) {
       list(...[await readTasks(), ...data]);
     } else {
