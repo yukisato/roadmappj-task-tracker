@@ -11,9 +11,13 @@ export class WrongStatusError extends Error {
 export const listArgsSchema = z.union([
   z.tuple([]).transform(() => undefined),
   z.tuple([
-    z.string().transform((status) => {
+    z.string().transform((status, ctx) => {
       if (isStatus(status)) return status;
-      throw new WrongStatusError();
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: new WrongStatusError().message,
+      });
+      return z.NEVER;
     }),
   ]),
 ]);

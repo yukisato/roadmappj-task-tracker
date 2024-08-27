@@ -23,9 +23,6 @@ describe('listArgsSchema correctly parses arguments', () => {
   });
 
   it('should fail to parse an incorrect status ["wrong status"]', () => {
-    assert.throws(
-      () => listArgsSchema.safeParse(['wrong status']),
-      WrongStatusError
-    );
+    assert.ok(!listArgsSchema.safeParse(['wrong status']).success);
   });
 });
