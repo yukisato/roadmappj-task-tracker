@@ -1,4 +1,4 @@
-import { commands } from '../run';
+import { commands } from '../types/command';
 
 export const missingCommandError = new TypeError(
   `Subcommand is not passed. Use [${Object.keys(commands).join('|')}].`
