@@ -13,8 +13,8 @@ import { readTasks, writeTasks } from './lib/dataModifier';
 import { list, listArgsSchema, WrongStatusError } from './lib/displayHelper';
 import { MissingCommandError, WrongCommandError } from './lib/error';
 import { Command, isCommand } from './types/command';
+import { Executor } from './types/executor';
 
-export type Executor = (args: string[]) => Promise<void>;
 const executors: Record<Command, Executor> = {
   add: async (args: string[]) => {
     const { data } = addArgsSchema.safeParse(args);
