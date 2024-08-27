@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { describe, it } from 'node:test';
+import { describe, it, mock } from 'node:test';
 import { add, addArgsSchema, getNextId } from './add';
 import { todoTask } from '../lib/testData';
 
@@ -33,12 +33,16 @@ describe('addArgsSchema parses an argument properly', () => {
 
 describe('add() adds a new task to the list', () => {
   it('should create a task and add it to the list', () => {
-    const createdAt = new Date().toISOString();
-    const expected = { ...todoTask, id: 1, createdAt };
-    const updated = add([], expected.description);
+    mock.timers.enable({ apis: ['Date'] });
+    const expected = [
+      {
+        ...todoTask,
+        id: 1,
+        createdAt: new Date().toISOString(),
+      },
+    ];
 
-    assert.equal(updated.length, 1);
-    assert.deepEqual({ ...updated[0], createdAt }, expected);
+    assert.deepEqual(add([], expected[0].description), expected);
   });
 
   it('should increment the id to 2 for the secondaly added task', () => {
