@@ -1,13 +1,8 @@
-import { missingCommandError, wrongCommandError } from './lib/error';
-import { isCommand, run } from './run';
-
-const [, , subcommand, ...args] = process.argv;
-if (!subcommand) throw missingCommandError;
-if (!isCommand(subcommand)) throw wrongCommandError;
+import { run } from './run';
 
 (async () => {
   try {
-    await run(subcommand, args);
+    await run(process.argv);
   } catch (error) {
     console.error((error as Error).message);
   }

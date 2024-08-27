@@ -3,6 +3,7 @@ import { run } from './run';
 import assert from 'node:assert/strict';
 import { emptyData, writeTasks } from './lib/dataModifier';
 import { inProgressTask, todoTask } from './lib/testData';
+import { MissingCommandError, WrongCommandError } from './lib/error';
 
 describe('run() invokes specified subcommand', () => {
   beforeEach(async () => {
@@ -18,7 +19,18 @@ describe('run() invokes specified subcommand', () => {
     await writeTasks([todoTask, inProgressTask]);
 
     assert.equal(consoleLog.mock.callCount(), 0);
-    await run('list', ['todo']);
+    await run(['', '', 'list', 'todo']);
     assert.equal(consoleLog.mock.callCount(), 1);
+  });
+
+  it('should throw error if subcommand is not passed', async () => {
+    await assert.rejects(async () => await run(['', '']), MissingCommandError);
+  });
+
+  it('should throw error if a wrong subcommand is passed', async () => {
+    await assert.rejects(
+      async () => await run(['', '', 'none']),
+      WrongCommandError
+    );
   });
 });

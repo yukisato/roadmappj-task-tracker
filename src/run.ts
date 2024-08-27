@@ -9,22 +9,10 @@ import {
   removeArgsSchema,
   updateStatusArgsSchema,
 } from './subcommands';
-import { z } from 'zod';
 import { readTasks, writeTasks } from './lib/dataModifier';
-import { list, listArgsSchema, wrongStatusError } from './lib/displayHelper';
-
-export const commands = [
-  'add',
-  'update',
-  'delete',
-  'mark-in-progress',
-  'mark-done',
-  'list',
-] as const;
-export type Command = (typeof commands)[number];
-export const commandSchema = z.enum(commands);
-export const isCommand = (command: unknown): command is Command =>
-  commandSchema.safeParse(command).success;
+import { list, listArgsSchema, WrongStatusError } from './lib/displayHelper';
+import { MissingCommandError, WrongCommandError } from './lib/error';
+import { Command, isCommand } from './types/command';
 
 export type Executor = (args: string[]) => Promise<void>;
 const executors: Record<Command, Executor> = {
@@ -50,7 +38,7 @@ const executors: Record<Command, Executor> = {
   },
   list: async (args: string[]) => {
     const { success, data } = listArgsSchema.safeParse(args);
-    if (!success) throw wrongStatusError;
+    if (!success) throw new WrongStatusError();
     if (data) {
       list(...[await readTasks(), ...data]);
     } else {
@@ -59,6 +47,10 @@ const executors: Record<Command, Executor> = {
   },
 } as const;
 
-export const run = async (command: Command, args: string[]) => {
-  await executors[command](args);
+export const run = async (argv: string[]) => {
+  const [, , subcommand, ...args] = argv;
+  if (!subcommand) throw new MissingCommandError();
+  if (!isCommand(subcommand)) throw new WrongCommandError();
+
+  await executors[subcommand](args);
 };

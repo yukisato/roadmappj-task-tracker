@@ -1,5 +1,5 @@
 import { describe, it } from 'node:test';
-import { list, listArgsSchema, wrongStatusError } from './displayHelper';
+import { list, listArgsSchema, WrongStatusError } from './displayHelper';
 import assert from 'node:assert/strict';
 import { inProgressTask, todoTask } from './testData';
 
@@ -25,7 +25,7 @@ describe('listArgsSchema correctly parses arguments', () => {
   it('should fail to parse an incorrect status ["wrong status"]', () => {
     assert.throws(
       () => listArgsSchema.safeParse(['wrong status']),
-      wrongStatusError
+      WrongStatusError
     );
   });
 });
