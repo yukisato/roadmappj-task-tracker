@@ -3,7 +3,7 @@ import { run } from './run';
 import assert from 'node:assert/strict';
 import { emptyData, writeTasks } from './lib/dataModifier';
 import { inProgressTask, todoTask } from './lib/testData';
-import { missingCommandError, wrongCommandError } from './lib/error';
+import { MissingCommandError, WrongCommandError } from './lib/error';
 
 describe('run() invokes specified subcommand', () => {
   beforeEach(async () => {
@@ -24,13 +24,13 @@ describe('run() invokes specified subcommand', () => {
   });
 
   it('should throw error if subcommand is not passed', async () => {
-    await assert.rejects(async () => await run(['', '']), missingCommandError);
+    await assert.rejects(async () => await run(['', '']), MissingCommandError);
   });
 
   it('should throw error if a wrong subcommand is passed', async () => {
     await assert.rejects(
       async () => await run(['', '', 'none']),
-      wrongCommandError
+      WrongCommandError
     );
   });
 });

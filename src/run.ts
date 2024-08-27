@@ -11,7 +11,7 @@ import {
 } from './subcommands';
 import { readTasks, writeTasks } from './lib/dataModifier';
 import { list, listArgsSchema, wrongStatusError } from './lib/displayHelper';
-import { missingCommandError, wrongCommandError } from './lib/error';
+import { MissingCommandError, WrongCommandError } from './lib/error';
 import { Command, isCommand } from './types/command';
 
 export type Executor = (args: string[]) => Promise<void>;
@@ -49,8 +49,8 @@ const executors: Record<Command, Executor> = {
 
 export const run = async (argv: string[]) => {
   const [, , subcommand, ...args] = argv;
-  if (!subcommand) throw missingCommandError;
-  if (!isCommand(subcommand)) throw wrongCommandError;
+  if (!subcommand) throw new MissingCommandError();
+  if (!isCommand(subcommand)) throw new WrongCommandError();
 
   await executors[subcommand](args);
 };
