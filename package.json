@@ -6,7 +6,8 @@
     "task-cli": "bin/task-cli"
   },
   "scripts": {
-    "build": "tsc",
+    "clear": "rm -rf ./dist",
+    "build": "npm run clear && tsc -p ./tsconfig.build.json && tsc-alias -p ./tsconfig.build.json",
     "test": "node --test --require ts-node/register --require tsconfig-paths/register 'src/**/*.test.ts'",
     "prepare": "husky"
   },
@@ -28,6 +29,7 @@
     "lint-staged": "^15.2.9",
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.10",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.5.4"
   },
